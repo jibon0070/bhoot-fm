@@ -84,6 +84,14 @@
       const restoreLastSession = () => {
         const b_date = localStorage.getItem('b_date');
         const b_time = localStorage.getItem('b_time');
+        if (isBlankPage) {
+          if (b_date) {
+            location.href = `/${b_date}`;
+            return;
+          }
+          alert("No last session found please enter the date in address bar");
+          return;
+        }
       }
     });
   </script>
