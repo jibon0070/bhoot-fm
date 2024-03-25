@@ -79,6 +79,7 @@
         localStorage.setItem('b_time', audio.currentTime);
       });
       audio.addEventListener('ended', () => {
+        goTo(1);
       });
     });
   </script>
