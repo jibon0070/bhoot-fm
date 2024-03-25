@@ -1,0 +1,113 @@
+<html>
+
+<head>
+  {{if .Year}}
+  <title>Bhoot FM {{.Year}}-{{.Month}}-{{.Day}}</title>
+  {{else}}
+  <title>Bhoot FM</title>
+  {{end}}
+  <!-- include tailwindcss -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const audio = document.querySelector('audio');
+      const numberPadding = (number) => number < 10 ? `0${number}` : "" + number;
+      const goTo = (number) => {
+        const date = new Date("{{.Year}}-{{.Month}}-{{.Day}}");
+        const toDate = new Date(date.getTime() + (number * 7 * 24 * 60 * 60 * 1000));
+        window.location.href = `/${toDate.getFullYear()}-${numberPadding(toDate.getMonth() + 1)}-${numberPadding(toDate.getDate())}`;
+      }
+      const playBackRate = (number) => {
+        if (audio.playbackRate + number > 1 && audio.playbackRate + number < 20) {
+          audio.playbackRate += number;
+        } else if (audio.playbackRate + number < 1) {
+          audio.playbackRate = 1;
+        } else if (audio.playbackRate + number > 20) {
+          audio.playbackRate = 20;
+        }
+      }
+      const seekTime = (time) => {
+        if (audio.currentTime + time >= 0 && audio.currentTime + time <= audio.duration) {
+          audio.currentTime += time;
+        } else if (audio.currentTime + time < 0) {
+          audio.currentTime = 0;
+        } else if (audio.currentTime + time > audio.duration) {
+          audio.currentTime = audio.duration;
+        }
+      }
+      const togglePlayPause = () => {
+        if (audio.paused) {
+          audio.play();
+        } else {
+          audio.pause();
+        }
+      }
+      const toggleMute = () => {
+        audio.muted = !audio.muted;
+      }
+      const isBlankPage = Boolean("{{if not .Year}}true{{else}}{{end}}");
+      //keyboard shortcuts
+      document.addEventListener('keydown', (e) => {
+        if (isBlankPage) return;
+        else if (e.shiftKey && (e.key === '>' || e.key === '.')) {
+          //shift + > or . => fast forward
+          playBackRate(0.1);
+        } else if (e.shiftKey && (e.key === '<' || e.key === ',')) {
+          //shift + < or , => slow down 
+          playBackRate(-0.1);
+        } else if (e.key === 'ArrowRight' || e.key === 'l') {
+          //right arrow or l => seek forward 10 seconds 
+          seekTime(10)
+        } else if (e.key === 'ArrowLeft' || e.key === 'h') {
+          //left arrow or h => seek backward 10 seconds 
+          seekTime(-10)
+        } else if (e.key === 'j') {
+          //j => next 
+          goTo(1);
+        } else if (e.key === 'k') {
+          //k => previous 
+          goTo(-1);
+        } else if (e.key === ' ') {
+          //space => play/pause 
+          togglePlayPause();
+        } else if (e.key === 'm') {
+          //m => mute/unmute 
+          toggleMute();
+        }
+      });
+      audio.addEventListener('timeupdate', () => {
+        localStorage.setItem('b_time', audio.currentTime);
+      });
+      audio.addEventListener('ended', () => {
+        goTo(1);
+      });
+      const restoreLastSession = () => {
+        const b_date = localStorage.getItem('b_date');
+        const b_time = localStorage.getItem('b_time');
+        if (isBlankPage) {
+          if (b_date) {
+            location.href = `/${b_date}`;
+            return;
+          }
+          alert("No last session found please enter the date in address bar");
+          return;
+        }
+        if (b_date === "{{.Year}}-{{.Month}}-{{.Day}}" && b_time) {
+          audio.currentTime = b_time;
+        }
+      }
+      restoreLastSession();
+      if (!isBlankPage) {
+        localStorage.setItem('b_date', "{{.Year}}-{{.Month}}-{{.Day}}");
+      }
+    });
+  </script>
+</head>
+
+<body class="bg-gray-900 text-gray-100 p-5 flex justify-center items-center flex-col h-screen">
+  <audio autoplay controls>
+    <source src="https://dl.bhoot-fm.com/{{.Year}}/Bhoot-FM_{{.Year}}-{{.Month}}-{{.Day}}_(Bhoot-FM.com).mp3" />
+  </audio>
+</body>
+
+</html>
