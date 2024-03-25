@@ -97,6 +97,9 @@
         }
       }
       restoreLastSession();
+      if (!isBlankPage) {
+        localStorage.setItem('b_date', "{{.Year}}-{{.Month}}-{{.Day}}");
+      }
     });
   </script>
 </head>
