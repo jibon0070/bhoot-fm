@@ -14,6 +14,8 @@
       const playBackRate = (number) => {
         if (audio.playbackRate + number > 1 && audio.playbackRate + number < 20) {
           audio.playbackRate += number;
+        } else if (audio.playbackRate + number < 1) {
+          audio.playbackRate = 1;
         }
       }
       const isBlankPage = Boolean("{{if not .Year}}true{{else}}{{end}}");
