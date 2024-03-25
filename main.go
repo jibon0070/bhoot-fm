@@ -6,4 +6,5 @@ import (
 )
 
 func main() {
+	http.HandleFunc("/", controllers.Home)
 }
