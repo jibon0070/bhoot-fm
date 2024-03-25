@@ -42,6 +42,9 @@
         } else if (e.key === 'ArrowRight' || e.key === 'l') {
           //right arrow or l => seek forward 10 seconds 
           seekTime(10)
+        } else if (e.key === 'ArrowLeft' || e.key === 'h') {
+          //left arrow or h => seek backward 10 seconds 
+          seekTime(-10)
         }
       });
     });
