@@ -11,4 +11,8 @@ func Home(w http.ResponseWriter, r *http.Request) {
 		param = r.URL.Path[len("/"):]
 	}
 	isValidDate, err := regexp.MatchString(`^\d{4}-\d{2}-\d{2}$`, param)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 }
