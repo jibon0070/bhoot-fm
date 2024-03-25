@@ -21,6 +21,9 @@
         }
       }
       const seekTime = (time) => {
+        if (audio.currentTime + time >= 0 && audio.currentTime + time <= audio.duration) {
+          audio.currentTime += time;
+        }
       }
       const isBlankPage = Boolean("{{if not .Year}}true{{else}}{{end}}");
       //keyboard shortcuts
