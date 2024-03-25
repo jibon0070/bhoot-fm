@@ -24,6 +24,10 @@
       //keyboard shortcuts
       document.addEventListener('keydown', (e) => {
         if (isBlankPage) return;
+        else if (e.shiftKey && (e.key === '>' || e.key === '.')) {
+          //shift + > or . => fast forward
+          playBackRate(0.1);
+        }
       });
     });
   </script>
