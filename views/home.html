@@ -43,6 +43,7 @@
         }
       }
       const toggleMute = () => {
+        audio.muted = !audio.muted;
       }
       const isBlankPage = Boolean("{{if not .Year}}true{{else}}{{end}}");
       //keyboard shortcuts
