@@ -5,6 +5,12 @@ import (
 	"regexp"
 )
 
+type Date struct {
+	Year  string
+	Month string
+	Day   string
+}
+
 func Home(w http.ResponseWriter, r *http.Request) {
 	var param string
 	if len(r.URL.Path) > len("/") {
@@ -15,4 +21,5 @@ func Home(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
+	var date Date
 }
