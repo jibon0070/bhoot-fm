@@ -29,4 +29,8 @@ func Home(w http.ResponseWriter, r *http.Request) {
 		date.Day = param[8:10]
 	}
 	t, err := template.ParseFiles("views/home.html")
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 }
