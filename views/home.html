@@ -11,6 +11,8 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const audio = document.querySelector('audio');
+      const goTo = (number) => {
+      }
       const playBackRate = (number) => {
         if (audio.playbackRate + number > 1 && audio.playbackRate + number < 20) {
           audio.playbackRate += number;
