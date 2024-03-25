@@ -23,6 +23,8 @@
       const seekTime = (time) => {
         if (audio.currentTime + time >= 0 && audio.currentTime + time <= audio.duration) {
           audio.currentTime += time;
+        } else if (audio.currentTime + time < 0) {
+          audio.currentTime = 0;
         }
       }
       const isBlankPage = Boolean("{{if not .Year}}true{{else}}{{end}}");
