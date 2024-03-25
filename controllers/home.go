@@ -22,4 +22,9 @@ func Home(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	var date Date
+	if isValidDate {
+		date.Year = param[0:4]
+		date.Month = param[5:7]
+		date.Day = param[8:10]
+	}
 }
