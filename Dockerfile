@@ -1,1 +1,1 @@
-FROM golang:alpine
+FROM golang:alpine AS build
