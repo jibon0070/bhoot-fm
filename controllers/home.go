@@ -5,4 +5,5 @@ import (
 )
 
 func Home(w http.ResponseWriter, r *http.Request) {
+	var param string
 }
