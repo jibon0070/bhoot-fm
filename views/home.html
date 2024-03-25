@@ -12,6 +12,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       const audio = document.querySelector('audio');
       const goTo = (number) => {
+        const date = new Date("{{.Year}}-{{.Month}}-{{.Day}}");
       }
       const playBackRate = (number) => {
         if (audio.playbackRate + number > 1 && audio.playbackRate + number < 20) {
