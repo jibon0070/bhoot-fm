@@ -78,6 +78,8 @@
       audio.addEventListener('timeupdate', () => {
         localStorage.setItem('b_time', audio.currentTime);
       });
+      audio.addEventListener('ended', () => {
+      });
     });
   </script>
 </head>
