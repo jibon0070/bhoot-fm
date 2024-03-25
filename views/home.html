@@ -36,6 +36,9 @@
         }
       }
       const togglePlayPause = () => {
+        if (audio.paused) {
+          audio.play();
+        }
       }
       const isBlankPage = Boolean("{{if not .Year}}true{{else}}{{end}}");
       //keyboard shortcuts
