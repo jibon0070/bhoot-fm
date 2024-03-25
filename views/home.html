@@ -11,6 +11,7 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const audio = document.querySelector('audio');
+      const numberPadding = (number) => number < 10 ? `0${number}` : "" + number;
       const goTo = (number) => {
         const date = new Date("{{.Year}}-{{.Month}}-{{.Day}}");
         const toDate = new Date(date.getTime() + (number * 7 * 24 * 60 * 60 * 1000));
