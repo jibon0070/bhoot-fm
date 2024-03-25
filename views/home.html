@@ -92,6 +92,9 @@
           alert("No last session found please enter the date in address bar");
           return;
         }
+        if (b_date === "{{.Year}}-{{.Month}}-{{.Day}}" && b_time) {
+          audio.currentTime = b_time;
+        }
       }
     });
   </script>
