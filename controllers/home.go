@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"html/template"
 	"net/http"
 	"regexp"
 )
@@ -27,4 +28,5 @@ func Home(w http.ResponseWriter, r *http.Request) {
 		date.Month = param[5:7]
 		date.Day = param[8:10]
 	}
+	t, err := template.ParseFiles("views/home.html")
 }
