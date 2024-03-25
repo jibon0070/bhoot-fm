@@ -13,6 +13,7 @@
       const isBlankPage = Boolean("{{if not .Year}}true{{else}}{{end}}");
       //keyboard shortcuts
       document.addEventListener('keydown', (e) => {
+        if (isBlankPage) return;
       });
     });
   </script>
