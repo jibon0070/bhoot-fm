@@ -103,6 +103,18 @@
       }
 
       const wasteData = wasteDatas.find(data => data.date === "{{.Year}}-{{.Month}}-{{.Day}}");
+      if (wasteData) {
+        let wastedTime = 0;
+        // calculate wasted time
+        for(const segment of wasteData.segments) {
+          const startSecond = convertTimeToSecond(segment.start);
+          const endSecond = convertTimeToSecond(segment.end);
+          wastedTime += endSecond - startSecond;
+        }
+        const element = document.createElement('p');
+        element.innerHTML = `You are saving: ${convertSecondToTime(wastedTime)}`;
+        document.body.prepend(element);
+      }
 
       audio.addEventListener('timeupdate', () => {
         localStorage.setItem('b_time', audio.currentTime);
