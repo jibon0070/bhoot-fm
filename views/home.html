@@ -118,6 +118,20 @@
 
       audio.addEventListener('timeupdate', () => {
         localStorage.setItem('b_time', audio.currentTime);
+        if (wasteData) {
+          const currentSegnent = wasteData.segments.find(segment => {
+            const end = convertTimeToSecond(segment.end);
+            return audio.currentTime < end;
+          })
+          if (currentSegnent) {
+            const start = convertTimeToSecond(currentSegnent.start);
+            const end = convertTimeToSecond(currentSegnent.end);
+
+            if (audio.currentTime > start && audio.currentTime < end) {
+              audio.currentTime = end;
+            }
+          }
+        }
       });
       audio.addEventListener('ended', () => {
         goTo(1);
