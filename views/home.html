@@ -90,6 +90,11 @@
         }
       });
 
+      function convertTimeToSecond(time) {
+        const [hour, minute, second] = time.split('.');
+        return hour * 60 * 60 + minute * 60 + second * 1
+      }
+
       const wasteData = wasteDatas.find(data => data.date === "{{.Year}}-{{.Month}}-{{.Day}}");
 
       audio.addEventListener('timeupdate', () => {
