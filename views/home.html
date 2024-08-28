@@ -9,6 +9,20 @@
   <!-- include tailwindcss -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
+    const wasteDatas = [
+      {
+        date: "2018-01-05",
+        segments: [
+          { start: "0.0.0", end: "0.2.23" },
+          { start: "0.21.40", end: "0.25.40" },
+          { start: "0.36.33", end: "0.38.25" },
+          { start: "0.39.43", end: "0.51.33" },
+          { start: "1.03.33", end: "1.04.45" },
+          { start: "1.11.58", end: "1.12.37" },
+          { start: "1.31.10", end: "1.32.24" },
+        ],
+      },
+    ];
     document.addEventListener('DOMContentLoaded', () => {
       const audio = document.querySelector('audio');
       const numberPadding = (number) => number < 10 ? `0${number}` : "" + number;
