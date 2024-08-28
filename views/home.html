@@ -95,6 +95,13 @@
         return hour * 60 * 60 + minute * 60 + second * 1
       }
 
+      function convertSecondToTime(second) {
+        const hour = Math.floor(second / 3600);
+        const minute = Math.floor((second - hour * 3600) / 60);
+        second = second % 60;
+        return `${hour}.${minute}.${second}`
+      }
+
       const wasteData = wasteDatas.find(data => data.date === "{{.Year}}-{{.Month}}-{{.Day}}");
 
       audio.addEventListener('timeupdate', () => {
