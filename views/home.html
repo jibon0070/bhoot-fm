@@ -89,6 +89,9 @@
           toggleMute();
         }
       });
+
+      const wasteData = wasteDatas.find(data => data.date === "{{.Year}}-{{.Month}}-{{.Day}}");
+
       audio.addEventListener('timeupdate', () => {
         localStorage.setItem('b_time', audio.currentTime);
       });
