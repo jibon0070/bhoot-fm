@@ -1,0 +1,8 @@
+/.git
+/.next
+/node_modules
+/.dockerignore
+/.gitignore
+/Dockerfile.dev
+/compose.yml
+/next-env.d.ts
